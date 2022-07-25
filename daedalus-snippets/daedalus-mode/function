@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: function
+# key: func
+# --
+
+func ${1:$$(yas-choose-value '("int" "string" "void" "float"))} ${2:function name} (${3:parameters}) 
+{
+$>$0
+};

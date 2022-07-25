@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: dialogue
+# key: dia
+# --
+instance $1_${2:Dialog name}(C_INFO)
+{
+$>npc         = ${1:NPC instance};
+$>nr          = ${3:Dialog number};
+$>condition   = $1_$2_Condition;
+$>information = $1_$2_Info;
+$>permanent   = ${4:$$(yas-choose-value '("TRUE" "FALSE" ))};
+$>description = "${5:Dialog description}";
+};
+
+func int $1_$2_Condition()
+{
+if ($6)
+{
+return TRUE;
+};
+return FALSE;
+};
+
+func void $1_$2_Info()
+{
+$>AI_Output(other, self, \"$1_$2_15_00\"); //$5 $7
+$>$0
+};
