@@ -42,9 +42,9 @@
          [
           ; macro keywords
           "#if"
-          "#elif"
-          "#else"
-          "#endif"
+          ;; "elif"
+          ;; "#else"
+          ;; "#endif"
           ] @doc
 
          [
@@ -128,7 +128,12 @@
          (function_zpe) @constructor
          ]
         )
-  (tree-sitter-hl-mode))
+  (tree-sitter-hl-mode)
+  (setq comment-start "// ")
+  (setq comment-end "")
+  (setq comment-start-skip "//+\\s-*")
+  (setq comment-multi-line 't)
+  )
 ;;;###autoload
 (progn
   (add-to-list 'auto-mode-alist '("\\.[dD]\\'" . daedalus-mode))
