@@ -19,7 +19,8 @@
 
          (comment) @comment
          (string_literal) @string
-         ;; (number_literal) @number
+         (int_literal) @number
+         (float_literal) @number
 
          ; Keywords
          [
@@ -32,17 +33,19 @@
           "prototype"
           "return"
           "var"
+          "const"
           ; other zPE keywords
           "while"
           "break"
           "continue"
           "namespace"
+          "ai"
           ] @keyword
 
          [
           ; macro keywords
           "#if"
-          ;; "elif"
+          "elif"
           ;; "#else"
           ;; "#endif"
           ] @doc
@@ -60,6 +63,8 @@
           "]"
           "{"
           "}"
+          "<"
+          ">"
           ] @punctuation.bracket
 
          [
@@ -101,11 +106,16 @@
          (call_expression
           (identifier) @function.call)
 
+         (meta_call_expression
+          (identifier) @function.macro
+          "!" @function.macro
+          )
+
          (function_definition
           (identifier) @function.definition)
 
-         (variable_definition
-          type: (identifier) @type )
+         (variable_declaration_abuse
+          (type) @type )
 
          (instance_definition
           parentReference: (identifier) @type)
@@ -120,12 +130,12 @@
           field: (array_expression
                   array_id: (identifier) @attribute))
 
-         (variable_builtin) @variable.builtin
+         ;; (variable_builtin) @variable.builtin
 
-         (function_builtin) @property ; purple - light
+         ;; (function_builtin) @property ; purple - light
          ;(function_builtin) @doc      ; gray - lighter comment
          ;(function_builtin) @escape  ; blue
-         (function_zpe) @constructor
+         ;; (function_zpe) @constructor
          ]
         )
   (tree-sitter-hl-mode)
